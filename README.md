@@ -1,6 +1,6 @@
 # Machine Learning in Computer Vision
 
-## Image Segmentation: segment humans from background
+## Image Segmentation: separate humans from background
 
 A lightweight model to segment the prominent humans in the scene 
 in videos captured by a smartphone or web camera.
@@ -13,6 +13,12 @@ Returns a two class segmentation label (human or background) per pixel.
 | ![Original image](./resources/example_original_image.png) | ![Result classification](./resources/example_result_classification.png) |
 
 ### Build
+
+#### Option 1: via package script (aka "pyton3 -m build")
+
+
+
+#### Option 2: Manual build
 
 First of all, you need to activate virtual environment
 in you project using the command below. This step is optional,
@@ -36,17 +42,17 @@ You need to run the command below to install all of them.
 pip install -r requirements.txt
 ```
 
-Now you're good to go! Hooray
+Now you're good to go! Hooray 🎉
 
 ### Run
 
-To run the script you need to find a [demo file](./src/demo.py).
-All source code is located under [src directory](./src).
+To run the script you need to find a [demo file](human_segmentation/demo.py).
+All source code is located under [src directory](./human_segmentation).
 
 You can use the command below to run the script:
 
 ```bash
-python3 src/demo.py ./samples/house_01.png
+python3 human_segmentation/demo.py ./samples/house_01.png
 ```
 
 As the result you will see something similar to the image below.
