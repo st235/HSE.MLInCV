@@ -14,6 +14,8 @@ Returns a two class segmentation label (human or background) per pixel.
 
 ### Build
 
+__You need at least Python 3.9 to run the code.__
+
 #### Virtual env
 
 First of all, you need to activate virtual environment
