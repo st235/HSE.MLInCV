@@ -61,9 +61,39 @@ the first argument. See the example below:
 human-segmentation image1.png
 ```
 
-#### Option 2: Manual build
+#### Option 2: build from source
 
-Alternatively to `pip` you can build the app from sources.
+Alternatively, you can build the app from source.
+
+Please, note that you need [build](https://pypi.org/project/build/) installed. To do so you need to run
+
+```bash
+pip install build
+```
+
+First step would be to build wheels from the source code. To do so you need to run __build__. 
+
+```bash
+python3 -m build .
+```
+
+When the build is finished you are able to install the library from the produced wheel file.
+A command can look like something below:
+
+```bash
+pip install dist/human_segmentation-0.0.1-py3-none-any.whl
+```
+
+It will start the same installation process as `pip` usually do. After the app is installed successfully
+you may call it using `human-segmentation` command. For example,
+
+```bash
+human-segmentation
+```
+
+#### Option 3: run manually
+
+And the last but not least is to run the app manually using [`demo.py`](./demo.py) script. 
 
 First of all, you need to install all necessary dependencies. Luckily,
 all of them are located in [`requirements.txt`](./requirements.txt).
