@@ -2,8 +2,8 @@ import cv2
 import numpy as np
 from tensorflow.lite.python.interpreter import Interpreter
 
-from models.loaders import get_tensorflow_model_file
-from utils.args_parser import create_parser_for_cli, FLAG_NO_FLAG
+from src.models.loaders import get_tensorflow_model_file
+from src.utils.args_parser import create_parser_for_cli, FLAG_NO_FLAG
 
 
 def process_image(image_file: str):
