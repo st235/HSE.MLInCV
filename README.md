@@ -14,9 +14,27 @@ Returns a two class segmentation label (human or background) per pixel.
 
 ### Build
 
-#### Option 1: via pip install
+#### Option 1: pip
 
+Use pip to install the library
 
+```bash
+pip install git+https://github.com/st235/HSE.MLInCV.git
+```
+
+To run program just call
+
+```bash
+human-segmentation
+```
+
+The command will show default sample image or
+
+```bash
+human-segmentation image1.png
+```
+
+to specify custom image.
 
 #### Option 2: Manual build
 
@@ -44,15 +62,13 @@ pip install -r requirements.txt
 
 Now you're good to go! Hooray 🎉
 
-### Run
-
-To run the script you need to find a [demo file](src/demo.py).
+To run the script you need to find a [demo file](src/image_processor.py).
 All source code is located under [src directory](./src).
 
 You can use the command below to run the script:
 
 ```bash
-python3 src/demo.py ./samples/house_01.png
+python3 src/process.py ./samples/house_01.png
 ```
 
 As the result you will see something similar to the image below.

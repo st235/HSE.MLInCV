@@ -1,3 +1,5 @@
 include README.md
+include LICENSE
 include src/*
 include src/models/*.tflite
+include src/default/sample.jpeg

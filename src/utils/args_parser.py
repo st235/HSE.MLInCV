@@ -21,6 +21,9 @@ class ArgsParser:
 
         self.__append_flag_and_args(current_flag, current_args)
 
+    def is_empty(self):
+        return len(self.__args) == 0
+
     def has_flag(self, key: str):
         return key in self.__args and len(self.__args[key]) == 0
 
@@ -41,6 +44,10 @@ class ArgsParser:
     def __append_flag_and_args(self, flag: str, args: list[str]):
         if flag in self.__args:
             raise RuntimeError(f"Flag {flag} has been at least twice on the input")
+
+        if len(args) == 0:
+            return
+
         self.__args[flag] = args
 
     def __is_flag(self, token: str):
