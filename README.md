@@ -14,7 +14,7 @@ Returns a two class segmentation label (human or background) per pixel.
 
 ### Build
 
-#### Option 1: via package script (aka "pyton3 -m build")
+#### Option 1: via pip install
 
 
 
@@ -46,13 +46,13 @@ Now you're good to go! Hooray 🎉
 
 ### Run
 
-To run the script you need to find a [demo file](human_segmentation/demo.py).
-All source code is located under [src directory](./human_segmentation).
+To run the script you need to find a [demo file](src/demo.py).
+All source code is located under [src directory](./src).
 
 You can use the command below to run the script:
 
 ```bash
-python3 human_segmentation/demo.py ./samples/house_01.png
+python3 src/demo.py ./samples/house_01.png
 ```
 
 As the result you will see something similar to the image below.
