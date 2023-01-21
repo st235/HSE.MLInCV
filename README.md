@@ -14,47 +14,60 @@ Returns a two class segmentation label (human or background) per pixel.
 
 ### Build
 
-#### Option 1: pip
-
-Use pip to install the library
-
-```bash
-pip install git+https://github.com/st235/HSE.MLInCV.git
-```
-
-To run program just call
-
-```bash
-human-segmentation
-```
-
-The command will show default sample image or
-
-```bash
-human-segmentation image1.png
-```
-
-to specify custom image.
-
-#### Option 2: Manual build
+#### Virtual env
 
 First of all, you need to activate virtual environment
-in you project using the command below. This step is optional,
-however, can be very useful to segregate this project from your
+in your folder using the command below. This step is optional,
+however, can be very useful to segregate the project from your
 global environment.
+
+```bash
+python3 -m venv .venv
+```
 
 Moreover, please, do pay attention, that the project uses [opencv contrib](https://pypi.org/project/opencv-contrib-python/).
 So, if you're using global environment (instead of virtual) and have
 opencv installed, please, do check if your version of opencv is the
 right one.
 
+When the environment is ready we can proceed with building the project.
+
+#### Option 1: pip
+
+The first option is to use `pip` to install the library. Use the command below to
+download the code:
+
 ```bash
-python3 -m venv .venv
+pip install git+https://github.com/st235/HSE.MLInCV.git
 ```
 
-The next step is to install all necessary dependencies. Luckily,
+Pip should install all necessary dependencies and create an alias for the app.
+The alias is `human-segmentation`.
+
+To run the program just call the code below:
+
+```bash
+human-segmentation
+```
+
+The command will show default sample image similar to the next image.
+
+![Sample image](./resources/sample_default.png)
+
+To test the app against different image you can specify them as
+the first argument. See the example below:
+
+```bash
+human-segmentation image1.png
+```
+
+#### Option 2: Manual build
+
+Alternatively to `pip` you can build the app from sources.
+
+First of all, you need to install all necessary dependencies. Luckily,
 all of them are located in [`requirements.txt`](./requirements.txt).
-You need to run the command below to install all of them.
+You need to run the following command to install all of them.
 
 ```bash
 pip install -r requirements.txt
@@ -62,13 +75,19 @@ pip install -r requirements.txt
 
 Now you're good to go! Hooray 🎉
 
-To run the script you need to find a [demo file](src/image_processor.py).
+To run the script you need to find a [demo file](./demo.py).
 All source code is located under [src directory](./src).
 
-You can use the command below to run the script:
+You can use the next command to run the script to see the sample image:
 
 ```bash
-python3 src/process.py ./samples/house_01.png
+python3 demo.py
+```
+
+and a slightly different command to test the app against different images:
+
+```bash
+python3 demo.py ./samples/house_01.png
 ```
 
 As the result you will see something similar to the image below.
