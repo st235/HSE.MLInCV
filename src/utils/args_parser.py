@@ -37,13 +37,17 @@ class ArgsParser:
         key_args = self.__args[key]
 
         if len(key_args) != 1:
-            raise RuntimeError(f"Got more values ({len(key_args)}) than expected")
+            raise RuntimeError(
+                f"Got more values ({len(key_args)}) than expected"
+            )
 
         return key_args[0]
 
     def __append_flag_and_args(self, flag: str, args: list[str]):
         if flag in self.__args:
-            raise RuntimeError(f"Flag {flag} has been at least twice on the input")
+            raise RuntimeError(
+                f"Flag {flag} has been at least twice on the input"
+            )
 
         if len(args) == 0:
             return
