@@ -31,8 +31,8 @@ class ArgsParser:
         if key not in self.__args:
             if def_value is None:
                 raise RuntimeError(f"Key {key} was not presented in the cli")
-            else:
-                return def_value
+            
+            return def_value
 
         key_args = self.__args[key]
 

@@ -1,9 +1,15 @@
+"""Provides high level interface to interact with the segmentation model."""
+
 import cv2
 import numpy as np
 from tensorflow.lite.python.interpreter import Interpreter
 
 
+# pylint: disable=R0903
+# class has enough public methods
 class ImageProcessor:
+    """Class representing human images processor."""
+
     def __init__(self, model: str):
         self.__interpreter = Interpreter(model_path=model, num_threads=4)
         self.__interpreter.allocate_tensors()
@@ -16,6 +22,10 @@ class ImageProcessor:
         ]
 
     def process_image(self, image_file: str):
+        """Processes the given image: segregate a backround from foreground on
+        images with humans. Shows result in a window.
+        """
+
         original_image = cv2.imread(image_file)
         height = original_image.shape[0]
         width = original_image.shape[1]
