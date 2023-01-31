@@ -1,3 +1,5 @@
+"""Provides high level interface to interact with command line arguments."""
+
 import sys
 
 FLAG_NO_FLAG = ""
@@ -5,6 +7,9 @@ PREFIX_FLAG = "-"
 
 
 class ArgsParser:
+    """Parses CLI arguments and provides
+    an interface to access specific flags and their values."""
+
     def __init__(self, sys_args: list[str]):
         current_flag = FLAG_NO_FLAG
         current_args = []
@@ -22,16 +27,20 @@ class ArgsParser:
         self.__append_flag_and_args(current_flag, current_args)
 
     def is_empty(self):
+        """Returns True if no flags and arguments were found and False otherwise."""
         return len(self.__args) == 0
 
     def has_flag(self, key: str):
+        """Checks if the flag was on the arguments list."""
         return key in self.__args and len(self.__args[key]) == 0
 
     def get_string(self, key: str, def_value: str = None) -> str:
+        """Gets argument value for the given argument key,
+        if not found returns default value."""
         if key not in self.__args:
             if def_value is None:
                 raise RuntimeError(f"Key {key} was not presented in the cli")
-            
+
             return def_value
 
         key_args = self.__args[key]
@@ -62,6 +71,7 @@ class ArgsParser:
 
 
 def create_parser_for_cli() -> ArgsParser:
+    """Factory method to create ArgsParser for the given command line arguments."""
     # skipping the first entry
     # as it is the python script's name
     sys_args = sys.argv[1:]
