@@ -1,11 +1,38 @@
-[tool.black]
-line-length = 80
-target-version = ['py39']
-include = '\.pyi?$'
-
 [build-system]
 requires = [
     "setuptools>=42",
     "wheel"
 ]
 build-backend = "setuptools.build_meta"
+
+# Black
+[tool.black]
+line-length = 80
+target-version = ["py39"]
+include = "\\.pyi?$"
+
+# PyLint
+[tool.pylint.MAIN]
+
+# Specify a score threshold under which the program will exit with error.
+fail-under=10
+
+# Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the
+# number of processors available to use, and will cap the count on Windows to
+# avoid hangs.
+jobs=0
+
+# Files or directories to be skipped. They should be base names, not paths.
+ignore=[".venv",".vscode", "resources", "samples"]
+
+# Discover python modules and packages in the file system subtree.
+recursive=true
+
+[tool.pylint.TYPECHECK]
+
+# List of members which are set dynamically and missed by pylint inference
+# system, and so shouldn't trigger E1101 when accessed. Python regular
+# expressions are accepted.
+generated-members= [
+    "cv2.*"
+]

@@ -7,8 +7,8 @@ PREFIX_FLAG = "-"
 class ArgsParser:
     def __init__(self, sys_args: list[str]):
         current_flag = FLAG_NO_FLAG
-        current_args = list()
-        self.__args = dict()
+        current_args = []
+        self.__args = {}
 
         for token in sys_args:
             if self.__is_flag(token):
