@@ -93,7 +93,7 @@ you may call it using `human-segmentation` command. For example,
 human-segmentation
 ```
 
-#### Option 3: run manually
+#### Option 3: build locally
 
 And the last but not least is to run the app manually using [`demo.py`](./demo.py) script.
 
@@ -125,6 +125,36 @@ python3 demo.py ./samples/house_01.png
 As the result you will see something similar to the image below.
 
 ![Script results](./resources/script_output.png)
+
+### Local development
+
+To start local development in the repo, please, ensure that you have all quality assesment tools installed.
+
+To do so you need to run the following command __(additionally to the [local build commands](#option-3-build-locally))__:
+
+```
+pip install -r dev-requirements.txt
+```
+
+You will see that `black`, `pylint`, and `pre-commit` have been installed.
+
+#### Black
+
+- Code formatting tool
+- Black configuration is located at [pyproject.toml](./pyproject.toml)
+- To run black one may need to call `black .`
+
+#### Pylint
+
+- Linter
+- Pylint configuration is located at [pyproject.toml](./pyproject.toml)
+- To run pylint one may need to call `pylint src`
+
+#### Pre-commit
+
+- Pre-commit hooks
+- Configuration is located at [the special config](./.pre-commit-config.yaml)
+- Command runs automatically on every commit, however, to manually test hooks one may want to call `pre-commit run --all-files`
 
 ### Misc
 
