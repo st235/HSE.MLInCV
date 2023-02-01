@@ -23,5 +23,4 @@ repos:
         args: [
           "-rn", # Only display messages
           "--rcfile=pyproject.toml",
-          "src", # Code folder
         ]
