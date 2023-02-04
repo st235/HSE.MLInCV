@@ -1,3 +1,5 @@
+"""Module for image processing commands, like, segmentation."""
+
 from src.default.loader import get_sample_image
 from src.models.loaders import get_tensorflow_model_file
 from src.utils.args_parser import create_parser_for_cli, FLAG_NO_FLAG
@@ -6,6 +8,7 @@ from src.image_processor import ImageProcessor
 
 
 def main():
+    """Entry point to the process command."""
     args_parser = create_parser_for_cli()
     image_file = get_sample_image()
 

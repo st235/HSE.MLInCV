@@ -2,7 +2,7 @@
 
 ## Image Segmentation: separate humans from background
 
-A lightweight model to segment the prominent humans in the scene 
+A lightweight model to segment the prominent humans in the scene
 in videos captured by a smartphone or web camera.
 Runs in real-time (~120 FPS) on a laptop CPU via XNNPack TFLite backend.
 
@@ -73,7 +73,7 @@ Please, note that you need [build](https://pypi.org/project/build/) installed. T
 pip install build
 ```
 
-First step would be to build wheels from the source code. To do so you need to run __build__. 
+First step would be to build wheels from the source code. To do so you need to run __build__.
 
 ```bash
 python3 -m build .
@@ -93,9 +93,9 @@ you may call it using `human-segmentation` command. For example,
 human-segmentation
 ```
 
-#### Option 3: run manually
+#### Option 3: build locally
 
-And the last but not least is to run the app manually using [`demo.py`](./demo.py) script. 
+And the last but not least is to run the app manually using [`demo.py`](./demo.py) script.
 
 First of all, you need to install all necessary dependencies. Luckily,
 all of them are located in [`requirements.txt`](./requirements.txt).
@@ -126,7 +126,36 @@ As the result you will see something similar to the image below.
 
 ![Script results](./resources/script_output.png)
 
+### Local development
+
+To start local development in the repo, please, ensure that you have all quality assesment tools installed.
+
+To do so you need to run the following command __(additionally to the [local build commands](#option-3-build-locally))__:
+
+```
+pip install -r dev-requirements.txt
+```
+
+You will see that `black`, `pylint`, and `pre-commit` have been installed.
+
+#### Black
+
+- Code formatting tool
+- Black configuration is located at [pyproject.toml](./pyproject.toml)
+- To run black one may need to call `black .`
+
+#### Pylint
+
+- Linter
+- Pylint configuration is located at [pyproject.toml](./pyproject.toml)
+- To run pylint one may need to call `pylint src`
+
+#### Pre-commit
+
+- Pre-commit hooks
+- Configuration is located at [the special config](./.pre-commit-config.yaml)
+- Command runs automatically on every commit, however, to manually test hooks one may want to call `pre-commit run --all-files`
+
 ### Misc
 
 Code in this repo follows [Google's Python codestyle](https://google.github.io/styleguide/pyguide.html).
-
