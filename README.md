@@ -128,33 +128,59 @@ As the result you will see something similar to the image below.
 
 ### Local development
 
-To start local development in the repo, please, ensure that you have all quality assesment tools installed.
+To start local development in the repo, please, ensure that you have all code quality control tools installed.
 
-To do so you need to run the following command __(additionally to the [local build commands](#option-3-build-locally))__:
+To do so you need to run a few more commands __(additionally to the [local build commands](#option-3-build-locally))__
+in the same order as below:
+
+1. Install all dev dependencies, like, `linter`, `style formatter`, `pre-commit tools`, or `test runner`.
 
 ```
 pip install -r dev-requirements.txt
 ```
 
-You will see that `black`, `pylint`, and `pre-commit` have been installed.
+2. Install pre-commit hooks. This step is not necessary, however, the same checks will be performed on the server side
+when one creates Pull Request.
 
-#### Black
+```
+pre-commit install
+```
+
+#### Style formatter: black
 
 - Code formatting tool
 - Black configuration is located at [pyproject.toml](./pyproject.toml)
-- To run black one may need to call `black .`
+- To run black locally one may need to call `black .`
 
-#### Pylint
+#### Linter: pylint
 
 - Linter
 - Pylint configuration is located at [pyproject.toml](./pyproject.toml)
-- To run pylint one may need to call `pylint src`
+- To run pylint locally one may need to call `pylint src`
 
 #### Pre-commit
 
 - Pre-commit hooks
 - Configuration is located at [the special config](./.pre-commit-config.yaml)
 - Command runs automatically on every commit, however, to manually test hooks one may want to call `pre-commit run --all-files`
+
+#### Tests
+
+You can run tests by executing the following command
+
+```
+pytest .
+```
+
+Moreover, this repository contains regression tests. Long story short: regression tests are assuming that the old
+state of the system is correct, therefore at some point you need to generate them. To do so, just call `pytest` with
+additional command `--overwrite-regression-result`.
+
+See example below:
+
+```
+pytest . --overwrite-regression-result
+```
 
 ### Misc
 
