@@ -23,7 +23,7 @@ fail-under=10
 jobs=0
 
 # Files or directories to be skipped. They should be base names, not paths.
-ignore=[".venv",".vscode", "resources", "samples"]
+ignore=[".venv",".vscode", "resources", "samples", "tests"]
 
 # Discover python modules and packages in the file system subtree.
 recursive=true
