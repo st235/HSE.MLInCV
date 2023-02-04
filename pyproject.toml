@@ -36,3 +36,10 @@ recursive=true
 generated-members= [
     "cv2.*"
 ]
+
+# PyTest
+[tool.pytest.ini_options]
+markers=[
+    "load_image(file_path=None): loads the given image.",
+    "image_regression(states_folder=None): image regression test, stores states as images.",
+]
