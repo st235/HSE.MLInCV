@@ -19,6 +19,7 @@ repos:
         name: pylint
         entry: pylint
         language: system
+        exclude: ^tests/
         types: [python]
         args: [
           "-rn", # Only display messages
