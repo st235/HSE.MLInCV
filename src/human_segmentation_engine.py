@@ -4,11 +4,21 @@ import cv2
 import numpy as np
 from tensorflow.lite.python.interpreter import Interpreter
 
+from src.models.loaders import get_tensorflow_model_file
+
 
 # pylint: disable=R0903
 # Class has enough public methods.
 class HumanSegmentationEngine:
     """Class representing an engine extracting prominent humans from backgrounds."""
+
+    @classmethod
+    def create(cls, tensorflow_model_file=get_tensorflow_model_file()):
+        """Creates HumanSegmentationEngine instance.
+
+        Uses default tensorflow model if not specified.
+        """
+        return HumanSegmentationEngine(tensorflow_model_file)
 
     def __init__(self, model: str):
         self.__interpreter = Interpreter(model_path=model, num_threads=4)
