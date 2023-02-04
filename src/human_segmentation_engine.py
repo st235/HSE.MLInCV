@@ -1,4 +1,4 @@
-"""Provides high level interface to interact with the segmentation model."""
+"""High level interface to segmentate images with prominent humans on them."""
 
 import cv2
 import numpy as np
@@ -6,9 +6,9 @@ from tensorflow.lite.python.interpreter import Interpreter
 
 
 # pylint: disable=R0903
-# class has enough public methods
-class ImageProcessor:
-    """Class representing human images processor."""
+# Class has enough public methods.
+class HumanSegmentationEngine:
+    """Class representing an engine extracting prominent humans from backgrounds."""
 
     def __init__(self, model: str):
         self.__interpreter = Interpreter(model_path=model, num_threads=4)
@@ -21,12 +21,13 @@ class ImageProcessor:
             "index"
         ]
 
-    def process_image(self, image_file: str):
-        """Processes the given image: segregate a backround from foreground on
-        images with humans. Shows result in a window.
+    def perform_segmentation(self, original_image):
+        """Performs humans segmentation for the given image.
+
+        Returns a bit mask the same size as the original image,
+        where the mask specifies people locations.
         """
 
-        original_image = cv2.imread(image_file)
         height = original_image.shape[0]
         width = original_image.shape[1]
 
@@ -58,11 +59,4 @@ class ImageProcessor:
         )
         final_mask = cv2.cvtColor(final_mask, cv2.COLOR_GRAY2RGB)
 
-        masked_foreground = cv2.addWeighted(
-            original_image, 0.9, final_mask, 0.4, 0
-        )
-
-        cv2.imshow(image_file, masked_foreground)
-        cv2.waitKey(0)
-
-        cv2.destroyAllWindows()
+        return final_mask
