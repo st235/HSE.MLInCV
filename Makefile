@@ -23,6 +23,8 @@ VENVDIR=$(WORKDIR)/.venv
 
 # Search Python command
 
+_PY_AUTODETECT_MSG=Detected Python interpreter: $(PY). Use PY environment variable to override
+
 ifeq (ok,$(shell test -e /dev/null 2>&1 && echo ok))
 NULL_STDERR=2>/dev/null
 else
@@ -33,6 +35,7 @@ ifndef PY
 _PY_OPTION:=python3
 ifeq (ok,$(shell $(_PY_OPTION) -c "print('ok')" $(NULL_STDERR)))
 PY=$(_PY_OPTION)
+$(info $(_PY_AUTODETECT_MSG))
 endif
 endif
 
@@ -117,4 +120,4 @@ clean:
 
 demo:
 	. $(VENV)/activate
-	python demo.py
+	$(PY) demo.py
