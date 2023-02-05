@@ -33,6 +33,7 @@ Makefile provides a few callable targets. You can see them in the table below:
 | format   | calls black to format codestyle                                                                                              |
 | lint     | calls pylint to check the codebase                                                                                           |
 | clean    | removes virtual environment, cleans Python cache                                                                             |
+| web-demo | runs the web-page with a library in demo mode                                                                                |
 | demo     | runs the library in demo mode                                                                                                |
 
 ### Example
@@ -221,6 +222,30 @@ See example below:
 pytest . --overwrite-regression-result
 ```
 
-### Misc
+## Web-Page demo
+
+The project also supports web-page demo.
+You can start web page using the command below:
+
+```bash
+make web-demo
+```
+
+or you can manually install everything to start web-app
+
+```bash
+python -m pip install streamlit
+streamlit run web_demo.py
+```
+
+Web app allows you to pick up an image from you local files or web cam
+and apply background segregation on it.
+Moreover, the app support background overlay like in other modern video engines.
+
+| Local image                                             | Local image + background overlay                                          | Camera image + background overlay                                         |
+|---------------------------------------------------------|---------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| ![Local image](./resources/webapp_demo_local_image.png) | ![Local image + background overlay](./resources/webapp_demo_local_bg.png) | ![Camera image + background overlay](./resources/webapp_demo_camera.png)  |
+
+## Misc
 
 Code in this repo follows [Google's Python codestyle](https://google.github.io/styleguide/pyguide.html).

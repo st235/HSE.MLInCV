@@ -14,6 +14,8 @@
 #     calls pylint to check the codebase
 #   clean:
 #     removes virtual environment, cleans Python cache
+#   web-demo:
+#     runs the web-page with a library in demo mode
 #   demo:
 #     runs the library in demo mode
 #
@@ -117,6 +119,11 @@ format:
 clean:
 	rm -rf $(VENVDIR)
 	find $(WORKDIR) -name "*.pyc" -delete
+
+web-demo:
+	. $(VENV)/activate
+	$(PY) -m pip install streamlit
+	streamlit run web_demo.py
 
 demo:
 	. $(VENV)/activate
