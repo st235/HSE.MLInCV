@@ -23,6 +23,12 @@ VENVDIR=$(WORKDIR)/.venv
 
 # Search Python command
 
+ifeq (ok,$(shell test -e /dev/null 2>&1 && echo ok))
+NULL_STDERR=2>/dev/null
+else
+NULL_STDERR=2>NUL
+endif
+
 ifndef PY
 _PY_OPTION:=python3
 ifeq (ok,$(shell $(_PY_OPTION) -c "print('ok')" $(NULL_STDERR)))
