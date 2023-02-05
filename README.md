@@ -19,7 +19,7 @@ convenient entry point to the project leaving setup headache behind.
 
 _🚨🚨🚨Please, do keep in mind, these scripts are an **experimental** feature.
 The scripts **have been tested on MacOS only**. Script should run on Windows or Linux however I cannot guarantee that.
-If you experience any issues running them consider to fall back to manual installing process **described later in this document**.
+If you experience any issues running them consider to fall back to manual installing process **described later in this document**._
 
 ### Targets
 
