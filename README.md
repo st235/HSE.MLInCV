@@ -167,12 +167,14 @@ As the result you will see something similar to the image below.
 
 To start local development in the repo, please, ensure that you have all code quality control tools installed.
 
-To do so you need to run a few more commands __(additionally to the [local build commands](#option-2--run-demo-as-a-script))__
+To do so you need to run a few more commands __(additionally to the [manual installation commands](#manual-installation))__
 in the same order as below:
 
-1. Install all dev dependencies, like, `linter`, `style formatter`, `pre-commit tools`, or `test runner`.
+1. Install all dependencies: both production and dev.
+Dev dependencies add `linter`, `style formatter`, `pre-commit tools`, and `test runner`.
 
 ```
+pip install -r requirements.txt
 pip install -r dev-requirements.txt
 ```
 
