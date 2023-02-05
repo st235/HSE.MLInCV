@@ -12,32 +12,48 @@ Returns a two class segmentation label (human or background) per pixel.
 |-----------------------------------------------------------|-------------------------------------------------------------------------|
 | ![Original image](./resources/example_original_image.png) | ![Result classification](./resources/example_result_classification.png) |
 
-### Build
+## Pre-configured scripts
 
-__You need at least Python 3.9 to run the code.__
+This project contains automated [Makefile script](./Makefile). The idea behind makefile is to provide
+convenient entry point to the project leaving setup headache behind.
 
-#### Virtual env
+_🚨🚨🚨Please, do keep in mind, these scripts are an **experimental** feature.
+The scripts **have been tested on MacOS only**. Script should run on Windows or Linux however I cannot guarantee that.
+If you experience any issues running them consider to fall back to manual installing process **described later in this document**.
 
-First of all, you need to activate virtual environment
-in your folder using the command below. This step is optional,
-however, can be very useful to segregate the project from your
-global environment.
+### Targets
+
+Makefile provides a few callable targets. You can see them in the table below:
+
+| Target   | Description                                                                                                                  |
+|----------|------------------------------------------------------------------------------------------------------------------------------|
+| install  | activates virtual environment, installs all dependencies, including dependencies for development, activates pre-commit hooks |
+| build    | provides pre-build binaries, includes wheels                                                                                 |
+| test     | calls tests using pytest                                                                                                     |
+| format   | calls black to format codestyle                                                                                              |
+| lint     | calls pylint to check the codebase                                                                                           |
+| clean    | removes virtual environment, cleans Python cache                                                                             |
+| demo     | runs the library in demo mode                                                                                                |
+
+### Example
+
+To make sure that everything works as intended you should call **install** target first. You can do it using the command below
 
 ```bash
-python3 -m venv .venv
+make install
 ```
 
-Moreover, please, do pay attention, that the project uses [opencv contrib](https://pypi.org/project/opencv-contrib-python/).
-So, if you're using global environment (instead of virtual) and have
-opencv installed, please, do check if your version of opencv is the
-right one.
+When installation is complete you will see `.venv` folder. After installation is complete, you may call any target you want.
+For example, to run demo you can use the next command:
 
-When the environment is ready we can proceed with building the project.
+```bash
+make demo
+```
 
-#### Option 1: pip
+## No-building: getting the code using pip
 
-The first option is to use `pip` to install the library. Use the command below to
-download the code:
+The easiest way to install the library is to use `pip`. `Pip` can install libraries from Git repositories which
+is pretty handful for us. Use the command below to download the code:
 
 ```bash
 pip install git+https://github.com/st235/HSE.MLInCV.git
@@ -63,9 +79,43 @@ the first argument. See the example below:
 human-segmentation image1.png
 ```
 
-#### Option 2: build from source
+## Manual installation
 
-Alternatively, you can build the app from source.
+__You need at least Python 3.9 to run the code.__
+
+### Virtual env and dependencies
+
+#### Venv
+
+First of all, you need to activate virtual environment
+in your folder using the command below. This step is optional,
+however, can be very useful to segregate the project from your
+global environment.
+
+```bash
+python3 -m venv .venv
+```
+
+Moreover, please, do pay attention, that the project uses [opencv contrib](https://pypi.org/project/opencv-contrib-python/).
+So, if you're using global environment (instead of virtual) and have
+opencv installed, please, do check if your version of opencv is the
+right one.
+
+#### Dependencies
+
+Moreover, you need to install all necessary dependencies. Luckily,
+all of them are located in [`requirements.txt`](./requirements.txt).
+You need to run the following command to install all of them.
+
+```bash
+pip install -r requirements.txt
+```
+
+Now you're good to go! Hooray 🎉
+
+### Option 1: build from source using `build`
+
+One can build the app from source.
 
 Please, note that you need [build](https://pypi.org/project/build/) installed. To do so you need to run
 
@@ -93,22 +143,9 @@ you may call it using `human-segmentation` command. For example,
 human-segmentation
 ```
 
-#### Option 3: build locally
+## Option 2: run demo as a script
 
 And the last but not least is to run the app manually using [`demo.py`](./demo.py) script.
-
-First of all, you need to install all necessary dependencies. Luckily,
-all of them are located in [`requirements.txt`](./requirements.txt).
-You need to run the following command to install all of them.
-
-```bash
-pip install -r requirements.txt
-```
-
-Now you're good to go! Hooray 🎉
-
-To run the script you need to find a [demo file](./demo.py).
-All source code is located under [src directory](./src).
 
 You can use the next command to run the script to see the sample image:
 
@@ -126,11 +163,11 @@ As the result you will see something similar to the image below.
 
 ![Script results](./resources/script_output.png)
 
-### Local development
+### Development and contribution
 
 To start local development in the repo, please, ensure that you have all code quality control tools installed.
 
-To do so you need to run a few more commands __(additionally to the [local build commands](#option-3-build-locally))__
+To do so you need to run a few more commands __(additionally to the [local build commands](#option-2--run-demo-as-a-script))__
 in the same order as below:
 
 1. Install all dev dependencies, like, `linter`, `style formatter`, `pre-commit tools`, or `test runner`.
@@ -172,7 +209,7 @@ You can run tests by executing the following command
 pytest .
 ```
 
-Moreover, this repository contains regression tests. Long story short: regression tests are assuming that the old
+Also, the repository contains regression tests. Long story short: regression tests are assuming that the old
 state of the system is correct, therefore at some point you need to generate them. To do so, just call `pytest` with
 additional command `--overwrite-regression-result`.
 
