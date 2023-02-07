@@ -2,9 +2,9 @@
 
 import cv2
 import numpy as np
-from tensorflow.lite.python.interpreter import Interpreter
 
 from src.models.loaders import get_tensorflow_model_file
+from src.utils.image_interpreter import ImageInterpreter
 
 
 # pylint: disable=R0903
@@ -13,23 +13,17 @@ class HumanSegmentationEngine:
     """Class representing an engine extracting prominent humans from backgrounds."""
 
     @classmethod
-    def create(cls, tensorflow_model_file=get_tensorflow_model_file()):
+    def create(cls, tensorflow_model_path=get_tensorflow_model_file()):
         """Creates HumanSegmentationEngine instance.
 
         Uses default tensorflow model if not specified.
         """
-        return HumanSegmentationEngine(tensorflow_model_file)
 
-    def __init__(self, model: str):
-        self.__interpreter = Interpreter(model_path=model, num_threads=4)
-        self.__interpreter.allocate_tensors()
+        interpreter = ImageInterpreter(tensorflow_model_path)
+        return HumanSegmentationEngine(interpreter)
 
-        self.__input_details = self.__interpreter.get_input_details()[0][
-            "index"
-        ]
-        self.__output_details = self.__interpreter.get_output_details()[0][
-            "index"
-        ]
+    def __init__(self, interpreter: ImageInterpreter):
+        self.__interpreter = interpreter
 
     def perform_segmentation(self, original_image):
         """Performs humans segmentation for the given image.
@@ -47,12 +41,7 @@ class HumanSegmentationEngine:
         image = image.astype(np.float32)
         image = image[np.newaxis, :, :, :]
 
-        self.__interpreter.set_tensor(self.__input_details, image)
-        self.__interpreter.invoke()
-        output = self.__interpreter.get_tensor(self.__output_details)
-
-        foreground = output[0][:, :, 0]
-        background = output[0][:, :, 1]
+        foreground, background = self.__interpreter.segment_layers(image)
 
         foreground_inverted = np.invert((foreground > 0.5) * 255)
         background_inverted = np.invert((background > 0.5) * 255)
