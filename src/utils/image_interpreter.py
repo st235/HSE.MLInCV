@@ -9,7 +9,11 @@ except ImportError:
 # pylint: disable=R0903
 # Class has enough public methods.
 class ImageInterpreter:
-    """Abstracts tensorflow interpreters to perform image layer segmentation."""
+    """Abstracts different tensorflow interpreters.
+
+    Use interpreter from tensorflow if found, otherwise
+    falls back to tensorflow runtime.
+    """
 
     def __init__(self, model_path: str):
         self.__interpreter = Interpreter(model_path=model_path, num_threads=4)
@@ -23,9 +27,10 @@ class ImageInterpreter:
         ]
 
     def segment_layers(self, image):
-        """Segments background and foreground of the given image.
+        """Segments background from foreground of the given image.
 
-        Returns 2 masks with weights: one for foreground, another for background.
+        Returns a tuple of 2 weighted masks:
+        one for foreground and another for background.
         """
         self.__interpreter.set_tensor(self.__input_details, image)
         self.__interpreter.invoke()
