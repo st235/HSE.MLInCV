@@ -228,7 +228,33 @@ The project also supports web-page demo.
 
 ### Build via docker
 
+To build an image you may want to run the command similar to the command below:
 
+```bash
+docker build -t web_demo .
+```
+
+Docker will use [default Dockerfile](./Dockerfile) to build an image. To run the container you need to specify image and
+port.
+
+```bash
+docker run -p 8000:8000 web_demo
+```
+
+Please, do pay attention that you need **to map ports** using `-p` command.
+
+The app will print something similar to
+
+```
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to False.
+
+
+  You can now view your Streamlit app in your browser.
+
+  URL: http://0.0.0.0:8000
+```
+
+Open the app using `localhost:8000`.
 
 ### Local build
 
