@@ -225,6 +225,13 @@ pytest . --overwrite-regression-result
 ## Web-Page demo
 
 The project also supports web-page demo.
+
+### Build via docker
+
+
+
+### Local build
+
 You can start web page using the command below:
 
 ```bash
@@ -237,6 +244,8 @@ or you can manually install everything to start web-app
 python -m pip install streamlit
 streamlit run web_demo.py
 ```
+
+### Description
 
 Web app allows you to pick up an image from you local files or web cam
 and apply background segregation on it.
