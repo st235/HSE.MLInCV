@@ -17,7 +17,7 @@ def main():
     if not args_parser.is_empty():
         image_file = args_parser.get_string(FLAG_NO_FLAG)
 
-    segmentation_engine = HumanSegmentationEngine(get_tensorflow_model_file())
+    segmentation_engine = HumanSegmentationEngine.create(get_tensorflow_model_file())
 
     original_image = cv2.imread(image_file)
     masked_foreground = segmentation_engine.perform_segmentation(original_image)
