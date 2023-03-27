@@ -281,6 +281,12 @@ Moreover, the app support background overlay like in other modern video engines.
 |---------------------------------------------------------|---------------------------------------------------------------------------|---------------------------------------------------------------------------|
 | ![Local image](./resources/webapp_demo_local_image.png) | ![Local image + background overlay](./resources/webapp_demo_local_bg.png) | ![Camera image + background overlay](./resources/webapp_demo_camera.png)  |
 
+### FAQ
+
+#### Q: Streamlit fails to run: ImportError: Missing optional dependency 'Jinja2'. DataFrame.style requires jinja2. Use pip or conda to install Jinja2.
+
+A: Something is wrong with the latest `jinja2`. Use [`pip install jinja2==3.0.1` to fix the issue.](https://discuss.streamlit.io/t/importerror-missing-optional-dependency-jinja2-dataframe-style-requires-jinja2-use-pip-or-conda-to-install-jinja2/26638)
+
 ## Misc
 
 Code in this repo follows [Google's Python codestyle](https://google.github.io/styleguide/pyguide.html).
